@@ -1,10 +1,14 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Layout from '../components/Layout'
 import CheckoutWizard from '../components/CheckoutWizard'
 import Link from 'next/link'
 import { Store } from '../utils/Store'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
+import { toast } from 'react-toastify'
+import { getError } from '../utils/error'
+import axios from 'axios'
+import Cookies from 'js-cookie'
 
 export default function PlaceOrderScreen() {
   const { state, dispacth } = useContext(Store)
@@ -24,7 +28,37 @@ export default function PlaceOrderScreen() {
     if (!paymentMethod) {
       router.push('/payment')
     }
-  }, [])
+  }, [paymentMethod, router])
+
+  const [loading, setLoading] = useState(false)
+
+  const placeOrderHandler = async () => {
+    try {
+      setLoading(true)
+      const { data } = await axios.post('/api/orders', {
+        orderItems: cartItems,
+        shippingAddress,
+        paymentMethod,
+        itemsPrice,
+        shippingPrice,
+        taxPrice,
+        totalPrice,
+      })
+      setLoading(false)
+      dispacth({type: 'CART_CLEAR_ITEMS'})
+      Cookies.set(
+        'cart',
+        JSON.stringify({
+          ...cart,
+          cartItems: [],
+        })
+      )
+      router.push(`/order/${data._id}`)
+    } catch (err) {
+      setLoading(false)
+      toast.error(getError(err))
+    }
+  }
 
 
   return (
@@ -146,3 +180,5 @@ export default function PlaceOrderScreen() {
     </Layout>
   )
 }
+
+PlaceOrderScreen.auth = true
