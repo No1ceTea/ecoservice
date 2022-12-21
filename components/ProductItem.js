@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 
-export default function Productitem({product}) {
+export default function Productitem({product, addToCartHandler}) {
   return (
     <div className="card">
       <Link href={`/product/${product.slug}`} legacyBehavior>
@@ -18,7 +18,7 @@ export default function Productitem({product}) {
         </Link>
         <p className="mb-2">{product.brand}</p>
         <p>${product.price}</p>
-        <button className="primary-button" type="button">
+        <button className="primary-button" type="button" onClick={() => addToCartHandler(product)}>
           Add to cart
         </button>
       </div>
