@@ -30,7 +30,7 @@ export default function Layout({title, children}) {
   return (
     <>
       <Head>
-        <title>{title ? title + ' - Amazona' : 'Amazona'}</title>
+        <title>{title ? title + ' - EcoService' : 'EcoService'}</title>
         <meta name="description" content="Eco Service" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
@@ -42,7 +42,7 @@ export default function Layout({title, children}) {
         <header>
           <nav className='flex h-12 items-center px-4 justify-between shadow-md'>
             <Link href="/" legacyBehavior>
-              <a className='text-lg font-bold'>Amazona</a>
+              <a className='text-lg font-bold'>EcoService </a>
             </Link>
             <div>
               <Link href="/cart" legacyBehavior>
@@ -113,7 +113,7 @@ export default function Layout({title, children}) {
         </main>
 
         <footer className='flex h-10 justify-center items-center shadow-inner'>
-          Copyright &copy; 2022 Amazona
+          Copyright &copy; 2023 EcoService
         </footer>
       </div>
     </>
