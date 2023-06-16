@@ -16,6 +16,7 @@
     "axios": "^1.2.1",
     "bcryptjs": "^2.4.3",
     "chart.js": "^4.3.0",
+    "cloudinary": "^1.37.1",
     "eslint": "8.29.0",
     "eslint-config-next": "13.0.7",
     "js-cookie": "^3.0.1",
