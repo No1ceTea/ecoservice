@@ -1,5 +1,5 @@
 import axios from 'axios'
-import Image from 'next/image'
+import Image from "next/image"
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import Cookies from 'js-cookie'
@@ -11,28 +11,28 @@ import { getError } from '../utils/error'
 import { Store } from '../utils/Store'
 
 export default function PlaceOrderScreen() {
-  const { state, dispatch } = useContext(Store)
-  const { cart } = state
-  const { cartItems, shippingAddress, paymentMethod } = cart
+  const { state, dispatch } = useContext(Store);
+  const { cart } = state;
+  const { cartItems, shippingAddress, paymentMethod } = cart;
 
-  const round2 = (num) => Math.round(num * 100 + Number.EPSILON) / 100
+  const round2 = (num) => Math.round(num * 100 + Number.EPSILON) / 100;
 
   const itemsPrice = round2(
     cartItems.reduce((a, c) => a + c.quantity * c.price, 0)
   ); // 123.4567 => 123.46
 
-  const shippingPrice = itemsPrice > 200 ? 0 : 15
-  const taxPrice = round2(itemsPrice * 0.15)
-  const totalPrice = round2(itemsPrice + shippingPrice + taxPrice)
+  const shippingPrice = itemsPrice > 200 ? 0 : 15;
+  const taxPrice = round2(itemsPrice * 0.15);
+  const totalPrice = round2(itemsPrice + shippingPrice + taxPrice);
 
-  const router = useRouter()
+  const router = useRouter();
   useEffect(() => {
     if (!paymentMethod) {
-      router.push('/payment')
+      router.push('/payment');
     }
-  }, [paymentMethod, router])
+  }, [paymentMethod, router]);
 
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
   const placeOrderHandler = async () => {
     try {
@@ -47,7 +47,7 @@ export default function PlaceOrderScreen() {
         totalPrice,
       });
       setLoading(false);
-      dispatch({ type: 'CART_CLEAR_ITEMS' })
+      dispatch({ type: 'CART_CLEAR_ITEMS' });
       Cookies.set(
         'cart',
         JSON.stringify({
@@ -55,10 +55,10 @@ export default function PlaceOrderScreen() {
           cartItems: [],
         })
       );
-      router.push(`/order/${data._id}`)
+      router.push(`/order/${data._id}`);
     } catch (err) {
-      setLoading(false)
-      toast.error(getError(err))
+      setLoading(false);
+      toast.error(getError(err));
     }
   };
 
@@ -97,8 +97,8 @@ export default function PlaceOrderScreen() {
                 <thead className="border-b">
                   <tr>
                     <th className="px-5 text-left">Item</th>
-                    <th className="p-5 text-right">Quantity</th>
-                    <th className="p-5 text-right">Price</th>
+                    <th className="    p-5 text-right">Quantity</th>
+                    <th className="  p-5 text-right">Price</th>
                     <th className="p-5 text-right">Subtotal</th>
                   </tr>
                 </thead>
@@ -106,17 +106,19 @@ export default function PlaceOrderScreen() {
                   {cartItems.map((item) => (
                     <tr key={item._id} className="border-b">
                       <td>
-                        <Link href={`/product/${item.slug}`} legacyBehavior>
-                          <a className="flex items-center">
-                            <Image
-                              src={item.image}
-                              alt={item.name}
-                              width={50}
-                              height={50}
-                            ></Image>
-                            &nbsp;
-                            {item.name}
-                          </a>
+                        <Link href={`/product/${item.slug}`} className="flex items-center">
+
+                          <Image
+                            src={item.image}
+                            alt={item.name}
+                            width={50}
+                            height={50}
+                            style={{
+                              maxWidth: "100%",
+                              height: "auto"
+                            }}></Image>
+                          {item.name}
+
                         </Link>
                       </td>
                       <td className=" p-5 text-right">{item.quantity}</td>
@@ -179,4 +181,4 @@ export default function PlaceOrderScreen() {
   );
 }
 
-PlaceOrderScreen.auth = true
+PlaceOrderScreen.auth = true;
