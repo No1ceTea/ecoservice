@@ -14,7 +14,7 @@ export default function ProductScreen(props) {
   const { state, dispatch } = useContext(Store)
   const router = useRouter()
   if (!product) {
-    return <Layout title="Produt Not Found">Produt Not Found</Layout>
+    return <Layout title="Produt Not Found">Le produit que vous chercher n&apos;existe pas</Layout>
   }
 
   const addToCartHandler = async () => {
@@ -23,7 +23,7 @@ export default function ProductScreen(props) {
     const { data } = await axios.get(`/api/products/${product._id}`)
 
     if (data.countInStock < quantity) {
-      return toast.error('Sorry. Product is out of stock')
+      return toast.error('Désole, ce produit est victime de son succès')
     }
 
     dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity } })
@@ -33,7 +33,7 @@ export default function ProductScreen(props) {
   return (
     <Layout title={product.name}>
       <div className="py-2">
-        <Link href="/">back to products</Link>
+        <Link href="/">Retourner aux produits</Link>
       </div>
       <div className="grid md:grid-cols-4 md:gap-3">
         <div className="md:col-span-2">
@@ -50,29 +50,29 @@ export default function ProductScreen(props) {
             <li>
               <h1 className="text-lg">{product.name}</h1>
             </li>
-            <li>Category: {product.category}</li>
-            <li>Brand: {product.brand}</li>
+            <li>Catégorie : {product.category}</li>
+            <li>Marque : {product.brand}</li>
             <li>
-              {product.rating} of {product.numReviews} reviews
+            Évaluation : {product.rating} sur {product.numReviews} évalutation(s)
             </li>
-            <li>Description: {product.description}</li>
+            <li>Description : {product.description}</li>
           </ul>
         </div>
         <div>
           <div className="card p-5">
             <div className="mb-2 flex justify-between">
-              <div>Price</div>
+              <div>Prix</div>
               <div>${product.price}</div>
             </div>
             <div className="mb-2 flex justify-between">
-              <div>Status</div>
-              <div>{product.countInStock > 0 ? 'In stock' : 'Unavailable'}</div>
+              <div>Statut</div>
+              <div>{product.countInStock > 0 ? 'En stock' : 'Indisponible'}</div>
             </div>
             <button
               className="primary-button w-full"
               onClick={addToCartHandler}
             >
-              Add to cart
+              Ajouter au panier
             </button>
           </div>
         </div>
