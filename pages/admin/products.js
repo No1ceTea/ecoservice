@@ -46,14 +46,14 @@ export default function AdminProdcutsScreen() {
   });
 
   const createHandler = async () => {
-    if (!window.confirm('Are you sure?')) {
+    if (!window.confirm('Êtes-vous sûr?')) {
       return;
     }
     try {
       dispatch({ type: 'CREATE_REQUEST' });
       const { data } = await axios.post(`/api/admin/products`);
       dispatch({ type: 'CREATE_SUCCESS' });
-      toast.success('Product created successfully');
+      toast.success('Le produit a bien été créer');
       router.push(`/admin/product/${data.product._id}`);
     } catch (err) {
       dispatch({ type: 'CREATE_FAIL' });
@@ -79,14 +79,14 @@ export default function AdminProdcutsScreen() {
   }, [successDelete]);
 
   const deleteHandler = async (productId) => {
-    if (!window.confirm('Are you sure?')) {
+    if (!window.confirm('Êtes-vous sûr?')) {
       return;
     }
     try {
       dispatch({ type: 'DELETE_REQUEST' });
       await axios.delete(`/api/admin/products/${productId}`);
       dispatch({ type: 'DELETE_SUCCESS' });
-      toast.success('Product deleted successfully');
+      toast.success('Le produit a bien été supprimer');
     } catch (err) {
       dispatch({ type: 'DELETE_FAIL' });
       toast.error(getError(err));
@@ -101,22 +101,20 @@ export default function AdminProdcutsScreen() {
               <Link href="/admin/dashboard">Dashboard</Link>
             </li>
             <li>
-              <Link href="/admin/orders">Orders</Link>
+              <Link href="/admin/orders">Commandes</Link>
             </li>
             <li>
-              <Link href="/admin/products" className="font-bold">
-                Products
-              </Link>
+              <Link href="/admin/products" className="font-bold">Produits</Link>
             </li>
             <li>
-              <Link href="/admin/users">Users</Link>
+              <Link href="/admin/users">Utilisateurs</Link>
             </li>
           </ul>
         </div>
         <div className="overflow-x-auto md:col-span-3">
           <div className="flex justify-between">
-            <h1 className="mb-4 text-xl">Products</h1>
-            {loadingDelete && <div>Deleting item...</div>}
+            <h1 className="mb-4 text-xl">Produits</h1>
+            {loadingDelete && <div>Suppression du produit...</div>}
             <button
               disabled={loadingCreate}
               onClick={createHandler}
@@ -126,7 +124,7 @@ export default function AdminProdcutsScreen() {
             </button>
           </div>
           {loading ? (
-            <div>Loading...</div>
+            <div>Chargement...</div>
           ) : error ? (
             <div className="alert-error">{error}</div>
           ) : (
@@ -135,11 +133,11 @@ export default function AdminProdcutsScreen() {
                 <thead className="border-b">
                   <tr>
                     <th className="px-5 text-left">ID</th>
-                    <th className="p-5 text-left">NAME</th>
-                    <th className="p-5 text-left">PRICE</th>
-                    <th className="p-5 text-left">CATEGORY</th>
-                    <th className="p-5 text-left">COUNT</th>
-                    <th className="p-5 text-left">RATING</th>
+                    <th className="p-5 text-left">NOM</th>
+                    <th className="p-5 text-left">PRIX</th>
+                    <th className="p-5 text-left">CATÉGORIE</th>
+                    <th className="p-5 text-left">STOCK</th>
+                    <th className="p-5 text-left">ÉVALUTION</th>
                     <th className="p-5 text-left">ACTIONS</th>
                   </tr>
                 </thead>
@@ -148,7 +146,7 @@ export default function AdminProdcutsScreen() {
                     <tr key={product._id} className="border-b">
                       <td className=" p-5 ">{product._id.substring(20, 24)}</td>
                       <td className=" p-5 ">{product.name}</td>
-                      <td className=" p-5 ">${product.price}</td>
+                      <td className=" p-5 ">{product.price}€</td>
                       <td className=" p-5 ">{product.category}</td>
                       <td className=" p-5 ">{product.countInStock}</td>
                       <td className=" p-5 ">{product.rating}</td>
@@ -166,7 +164,7 @@ export default function AdminProdcutsScreen() {
                           className="default-button"
                           type="button"
                         >
-                          Delete
+                          Supprimer
                         </button>
                       </td>
                     </tr>

@@ -37,9 +37,9 @@ function OrderHistoryScreen() {
   }, [])
   return (
     <Layout title="Order History">
-      <h1 className="mb-4 text-xl">Order History</h1>
+      <h1 className="mb-4 text-xl">Historique des commandes</h1>
       {loading ? (
-        <div>Loading...</div>
+        <div>Chargement...</div>
       ) : error ? (
         <div className="alert-error">{error}</div>
       ) : (
@@ -50,8 +50,8 @@ function OrderHistoryScreen() {
                 <th className="px-5 text-left">ID</th>
                 <th className="p-5 text-left">DATE</th>
                 <th className="p-5 text-left">TOTAL</th>
-                <th className="p-5 text-left">PAID</th>
-                <th className="p-5 text-left">DELIVERED</th>
+                <th className="p-5 text-left">PAYÉ</th>
+                <th className="p-5 text-left">LIVRÉ</th>
                 <th className="p-5 text-left">ACTION</th>
               </tr>
             </thead>

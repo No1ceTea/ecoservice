@@ -76,23 +76,23 @@ function AdminUsersScreen() {
               <Link href="/admin/dashboard">Dashboard</Link>
             </li>
             <li>
-              <Link href="/admin/orders">Orders</Link>
+              <Link href="/admin/orders">Commandes</Link>
             </li>
             <li>
-              <Link href="/admin/products">Products</Link>
+              <Link href="/admin/products">Produits</Link>
             </li>
             <li>
               <Link href="/admin/users" className="font-bold">
-                Users
+                Utilisateurs
               </Link>
             </li>
           </ul>
         </div>
         <div className="overflow-x-auto md:col-span-3">
-          <h1 className="mb-4 text-xl">Users</h1>
-          {loadingDelete && <div>Deleting...</div>}
+          <h1 className="mb-4 text-xl">Utilisateurs</h1>
+          {loadingDelete && <div>Suppresion...</div>}
           {loading ? (
-            <div>Loading...</div>
+            <div>Chargement...</div>
           ) : error ? (
             <div className="alert-error">{error}</div>
           ) : (
@@ -101,7 +101,7 @@ function AdminUsersScreen() {
                 <thead className="border-b">
                   <tr>
                     <th className="px-5 text-left">ID</th>
-                    <th className="p-5 text-left">NAME</th>
+                    <th className="p-5 text-left">NOM</th>
                     <th className="p-5 text-left">EMAIL</th>
                     <th className="p-5 text-left">ADMIN</th>
                     <th className="p-5 text-left">ACTIONS</th>
@@ -129,7 +129,7 @@ function AdminUsersScreen() {
                           className="default-button"
                           onClick={() => deleteHandler(user._id)}
                         >
-                          Delete
+                          Supprimer
                         </button>
                       </td>
                     </tr>

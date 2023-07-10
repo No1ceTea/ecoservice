@@ -22,17 +22,17 @@ function CartScreen() {
     const quantity = Number(qty)
     const { data } = await axios.get(`/api/products/${item._id}`)
     if (data.countInStock < quantity) {
-      return toast.error('Sorry. Product is out of stock')
+      return toast.error('Désolé, ce produit est victime de son succès')
     }
     dispatch({ type: 'CART_ADD_ITEM', payload: { ...item, quantity } })
-    toast.success('Product updated in the cart')
+    toast.success('Produit mis à jour dans le panier')
   };
   return (
     <Layout title="Shopping Cart">
-      <h1 className="mb-4 text-xl">Shopping Cart</h1>
+      <h1 className="mb-4 text-xl">Panier</h1>
       {cartItems.length === 0 ? (
         <div>
-          Cart is empty. <Link href="/">Go shopping</Link>
+          La panier est vide. <Link href="/">Aller remplir votre panier !</Link>
         </div>
       ) : (
         <div className="grid md:grid-cols-4 md:gap-5">
@@ -41,8 +41,8 @@ function CartScreen() {
               <thead className="border-b">
                 <tr>
                   <th className="p-5 text-left">Item</th>
-                  <th className="p-5 text-right">Quantity</th>
-                  <th className="p-5 text-right">Price</th>
+                  <th className="p-5 text-right">Quantité</th>
+                  <th className="p-5 text-right">Prix</th>
                   <th className="p-5">Action</th>
                 </tr>
               </thead>
@@ -77,7 +77,7 @@ function CartScreen() {
                         ))}
                       </select>
                     </td>
-                    <td className="p-5 text-right">${item.price}</td>
+                    <td className="p-5 text-right">{item.price} €</td>
                     <td className="p-5 text-center">
                       <button onClick={() => removeItemHandler(item)}>
                         <XCircleIcon className="h-5 w-5"></XCircleIcon>
@@ -92,8 +92,8 @@ function CartScreen() {
             <ul>
               <li>
                 <div className="pb-3 text-xl">
-                  Subtotal ({cartItems.reduce((a, c) => a + c.quantity, 0)}) : $
-                  {cartItems.reduce((a, c) => a + c.quantity * c.price, 0)}
+                  Total ({cartItems.reduce((a, c) => a + c.quantity, 0)}) :
+                  {cartItems.reduce((a, c) => a + c.quantity * c.price, 0)} €
                 </div>
               </li>
               <li>
@@ -101,7 +101,7 @@ function CartScreen() {
                   onClick={() => router.push('login?redirect=/shipping')}
                   className="primary-button w-full"
                 >
-                  Check Out
+                  Valider mon panier
                 </button>
               </li>
             </ul>

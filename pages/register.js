@@ -6,7 +6,7 @@ import Layout from '../components/Layout'
 import { getError } from '../utils/error'
 import { toast } from 'react-toastify'
 import { useRouter } from 'next/router'
-import axios from 'axios';
+import axios from 'axios'
 
 export default function LoginScreen() {
   const { data: session } = useSession();
@@ -52,16 +52,16 @@ export default function LoginScreen() {
         className="mx-auto max-w-screen-md"
         onSubmit={handleSubmit(submitHandler)}
       >
-        <h1 className="mb-4 text-xl">Create Account</h1>
+        <h1 className="mb-4 text-xl">Créer un compte</h1>
         <div className="mb-4">
-          <label htmlFor="name">Full Name</label>
+          <label htmlFor="name">Nom complet</label>
           <input
             type="text"
             className="w-full"
             id="name"
             autoFocus
             {...register('name', {
-              required: 'Please enter name',
+              required: 'Entrer votre nom complet',
             })}
           />
           {errors.name && (
@@ -74,10 +74,10 @@ export default function LoginScreen() {
           <input
             type="email"
             {...register('email', {
-              required: 'Please enter email',
+              required: 'Entrer une adresse mail',
               pattern: {
                 value: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$/i,
-                message: 'Please enter valid email',
+                message: 'Veuillez entrer une adresse mail valide',
               },
             })}
             className="w-full"
@@ -88,12 +88,12 @@ export default function LoginScreen() {
           )}
         </div>
         <div className="mb-4">
-          <label htmlFor="password">Password</label>
+          <label htmlFor="password">Mot de passe</label>
           <input
             type="password"
             {...register('password', {
-              required: 'Please enter password',
-              minLength: { value: 6, message: 'password is more than 5 chars' },
+              required: 'Entrer un mot de passe',
+              minLength: { value: 6, message: 'Le mot de passe doit comporter plus de 5 caractères' },
             })}
             className="w-full"
             id="password"
@@ -104,17 +104,17 @@ export default function LoginScreen() {
           )}
         </div>
         <div className="mb-4">
-          <label htmlFor="confirmPassword">Confirm Password</label>
+          <label htmlFor="confirmPassword">Confirmer le mot de passe</label>
           <input
             className="w-full"
             type="password"
             id="confirmPassword"
             {...register('confirmPassword', {
-              required: 'Please enter confirm password',
+              required: 'Veuillez confirmer votre mot de passe',
               validate: (value) => value === getValues('password'),
               minLength: {
                 value: 6,
-                message: 'confirm password is more than 5 chars',
+                message: 'Le mot de passe doit comporter plus de 5 caractères',
               },
             })}
           />
@@ -125,16 +125,16 @@ export default function LoginScreen() {
           )}
           {errors.confirmPassword &&
             errors.confirmPassword.type === 'validate' && (
-              <div className="text-red-500 ">Password do not match</div>
+              <div className="text-red-500 ">Le mot de passe ne correspond pas</div>
             )}
         </div>
 
         <div className="mb-4 ">
-          <button className="primary-button">Register</button>
+          <button className="primary-button">Inscription</button>
         </div>
         <div className="mb-4 ">
-          Don&apos;t have an account? &nbsp;
-          <Link href={`/register?redirect=${redirect || '/'}`}>Register</Link>
+          Déjà un compte ?&nbsp;
+          <Link href={`/login`}>Connectez-vous</Link> dès maintenant !
         </div>
       </form>
     </Layout>

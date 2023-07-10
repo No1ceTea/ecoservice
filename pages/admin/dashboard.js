@@ -87,20 +87,20 @@ function AdminDashboardScreen() {
               </Link>
             </li>
             <li>
-              <Link href="/admin/orders">Orders</Link>
+              <Link href="/admin/orders">Commandes</Link>
             </li>
             <li>
-              <Link href="/admin/products">Products</Link>
+              <Link href="/admin/products">Produits</Link>
             </li>
             <li>
-              <Link href="/admin/users">Users</Link>
+              <Link href="/admin/users">Utilisateurs</Link>
             </li>
           </ul>
         </div>
         <div className="md:col-span-3">
-          <h1 className="mb-4 text-xl">Admin Dashboard</h1>
+          <h1 className="mb-4 text-xl">Dashboard</h1>
           {loading ? (
-            <div>Loading...</div>
+            <div>Chargement...</div>
           ) : error ? (
             <div className="alert-error">{error}</div>
           ) : (
@@ -108,26 +108,26 @@ function AdminDashboardScreen() {
               <div className="grid grid-cols-1 md:grid-cols-4">
                 <div className="card m-5 p-5">
                   <p className="text-3xl">${summary.ordersPrice} </p>
-                  <p>Sales</p>
-                  <Link href="/admin/orders">View sales</Link>
+                  <p>Ventes</p>
+                  <Link href="/admin/orders">Voir ventes</Link>
                 </div>
                 <div className="card m-5 p-5">
                   <p className="text-3xl">{summary.ordersCount} </p>
-                  <p>Orders</p>
-                  <Link href="/admin/orders">View orders</Link>
+                  <p>Commandes</p>
+                  <Link href="/admin/orders">Voir commandes</Link>
                 </div>
                 <div className="card m-5 p-5">
                   <p className="text-3xl">{summary.productsCount} </p>
                   <p>Products</p>
-                  <Link href="/admin/products">View products</Link>
+                  <Link href="/admin/products">Voir produits</Link>
                 </div>
                 <div className="card m-5 p-5">
                   <p className="text-3xl">{summary.usersCount} </p>
-                  <p>Users</p>
-                  <Link href="/admin/users">View users</Link>
+                  <p>Utilisateurs</p>
+                  <Link href="/admin/users">Voir utilisateurs</Link>
                 </div>
               </div>
-              <h2 className="text-xl">Sales Report</h2>
+              <h2 className="text-xl">Rapport de vente</h2>
               <Bar
                 options={{
                   legend: { display: true, position: 'right' },

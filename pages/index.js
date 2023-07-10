@@ -1,4 +1,3 @@
-// import { Inter } from '@next/font/google'
 import axios from 'axios'
 import { useContext } from 'react'
 import { toast } from 'react-toastify'
@@ -8,7 +7,6 @@ import Product from '../models/Product'
 import db from '../utils/db'
 import { Store } from '../utils/Store'
 
-// const inter = Inter({ subsets: ['latin'] })
 
 export default function Home({ products }) {
   const { state, dispatch } = useContext(Store)
@@ -20,12 +18,12 @@ export default function Home({ products }) {
     const { data } = await axios.get(`/api/products/${product._id}`)
 
     if (data.countInStock < quantity) {
-      return toast.error('Sorry. Product is out of stock')
+      return toast.error('Désolé, le produit est victime de son succès')
     }
 
     dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity } })
 
-    toast.success('Product added to the cart')
+    toast.success('Produit ajouté au panier')
 
   }
 
