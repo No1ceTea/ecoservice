@@ -34,7 +34,7 @@ export default function ProfileScreen() {
         email,
         password,
       });
-      toast.success('Profile updated successfully');
+      toast.success('Le profil a bien été mise à jour');
       if (result.error) {
         toast.error(result.error);
       }

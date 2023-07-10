@@ -69,7 +69,7 @@ function OrderHistoryScreen() {
                   <td className=" p-5 ">
                     {order.isDelivered
                       ? `${order.deliveredAt.substring(0, 10)}`
-                      : 'not delivered'}
+                      : 'Pas livrer'}
                   </td>
                   <td className=" p-5 ">
                     <Link href={`/order/${order._id}`} passHref legacyBehavior>

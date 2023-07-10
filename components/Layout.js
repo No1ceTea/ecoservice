@@ -89,7 +89,7 @@ export default function Layout({ title, children }) {
                   <Menu.Items className="absolute right-0 w-56 origin-top-right bg-white  shadow-lg ">
                     <Menu.Item>
                       <DropdownLink className="dropdown-link" href="/profile">
-                        Profile
+                        Profil
                       </DropdownLink>
                     </Menu.Item>
                     <Menu.Item>

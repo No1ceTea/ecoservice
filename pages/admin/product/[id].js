@@ -95,7 +95,7 @@ export default function AdminProductEditScreen() {
       const { data } = await axios.post(url, formData);
       dispatch({ type: 'UPLOAD_SUCCESS' });
       setValue(imageField, data.secure_url);
-      toast.success('File uploaded successfully');
+      toast.success('Le fichier a bien été télécharger');
     } catch (err) {
       dispatch({ type: 'UPLOAD_FAIL', payload: getError(err) });
       toast.error(getError(err));
@@ -125,7 +125,7 @@ export default function AdminProductEditScreen() {
         description,
       });
       dispatch({ type: 'UPDATE_SUCCESS' });
-      toast.success('Product updated successfully');
+      toast.success('Le produit a bien été ajouter');
       router.push('/admin/products');
     } catch (err) {
       dispatch({ type: 'UPDATE_FAIL', payload: getError(err) });
@@ -142,21 +142,21 @@ export default function AdminProductEditScreen() {
               <Link href="/admin/dashboard">Dashboard</Link>
             </li>
             <li>
-              <Link href="/admin/orders">Orders</Link>
+              <Link href="/admin/orders">Commandes</Link>
             </li>
             <li>
               <Link href="/admin/products" className="font-bold">
-                Products
+                Produits
               </Link>
             </li>
             <li>
-              <Link href="/admin/users">Users</Link>
+              <Link href="/admin/users">Utilisateurs</Link>
             </li>
           </ul>
         </div>
         <div className="md:col-span-3">
           {loading ? (
-            <div>Loading...</div>
+            <div>Chargement...</div>
           ) : error ? (
             <div className="alert-error">{error}</div>
           ) : (
@@ -166,14 +166,14 @@ export default function AdminProductEditScreen() {
             >
               <h1 className="mb-4 text-xl">{`Edit Product ${productId}`}</h1>
               <div className="mb-4">
-                <label htmlFor="name">Name</label>
+                <label htmlFor="name">Nom complet</label>
                 <input
                   type="text"
                   className="w-full"
                   id="name"
                   autoFocus
                   {...register('name', {
-                    required: 'Please enter name',
+                    required: 'Entrer un nom',
                   })}
                 />
                 {errors.name && (
@@ -187,7 +187,7 @@ export default function AdminProductEditScreen() {
                   className="w-full"
                   id="slug"
                   {...register('slug', {
-                    required: 'Please enter slug',
+                    required: 'Entrer un slug',
                   })}
                 />
                 {errors.slug && (
@@ -195,13 +195,13 @@ export default function AdminProductEditScreen() {
                 )}
               </div>
               <div className="mb-4">
-                <label htmlFor="price">Price</label>
+                <label htmlFor="price">Prix</label>
                 <input
                   type="text"
                   className="w-full"
                   id="price"
                   {...register('price', {
-                    required: 'Please enter price',
+                    required: 'Entrer un prix',
                   })}
                 />
                 {errors.price && (
@@ -209,13 +209,13 @@ export default function AdminProductEditScreen() {
                 )}
               </div>
               <div className="mb-4">
-                <label htmlFor="image">image</label>
+                <label htmlFor="image">Image</label>
                 <input
                   type="text"
                   className="w-full"
                   id="image"
                   {...register('image', {
-                    required: 'Please enter image',
+                    required: 'Entrer une image',
                   })}
                 />
                 {errors.image && (
@@ -223,7 +223,7 @@ export default function AdminProductEditScreen() {
                 )}
               </div>
               <div className="mb-4">
-                <label htmlFor="imageFile">Upload image</label>
+                <label htmlFor="imageFile">Télechager l&apos;image</label>
                 <input
                   type="file"
                   className="w-full"
@@ -231,16 +231,16 @@ export default function AdminProductEditScreen() {
                   onChange={uploadHandler}
                 />
 
-                {loadingUpload && <div>Uploading....</div>}
+                {loadingUpload && <div>En téléchargement....</div>}
               </div>
               <div className="mb-4">
-                <label htmlFor="category">category</label>
+                <label htmlFor="category">Catégorie</label>
                 <input
                   type="text"
                   className="w-full"
                   id="category"
                   {...register('category', {
-                    required: 'Please enter category',
+                    required: 'Entrer la catégorie',
                   })}
                 />
                 {errors.category && (
@@ -248,13 +248,13 @@ export default function AdminProductEditScreen() {
                 )}
               </div>
               <div className="mb-4">
-                <label htmlFor="brand">brand</label>
+                <label htmlFor="brand">Marque</label>
                 <input
                   type="text"
                   className="w-full"
                   id="brand"
                   {...register('brand', {
-                    required: 'Please enter brand',
+                    required: 'Entrer la marque',
                   })}
                 />
                 {errors.brand && (
@@ -262,13 +262,13 @@ export default function AdminProductEditScreen() {
                 )}
               </div>
               <div className="mb-4">
-                <label htmlFor="countInStock">countInStock</label>
+                <label htmlFor="countInStock">Stock</label>
                 <input
                   type="text"
                   className="w-full"
                   id="countInStock"
                   {...register('countInStock', {
-                    required: 'Please enter countInStock',
+                    required: 'Entrer le stock actuel',
                   })}
                 />
                 {errors.countInStock && (
@@ -278,13 +278,13 @@ export default function AdminProductEditScreen() {
                 )}
               </div>
               <div className="mb-4">
-                <label htmlFor="countInStock">description</label>
+                <label htmlFor="countInStock">Description</label>
                 <input
                   type="text"
                   className="w-full"
                   id="description"
                   {...register('description', {
-                    required: 'Please enter description',
+                    required: 'Entrer une description',
                   })}
                 />
                 {errors.description && (
@@ -295,11 +295,11 @@ export default function AdminProductEditScreen() {
               </div>
               <div className="mb-4">
                 <button disabled={loadingUpdate} className="primary-button">
-                  {loadingUpdate ? 'Loading' : 'Update'}
+                  {loadingUpdate ? 'Chargement' : 'Mettre à jour'}
                 </button>
               </div>
               <div className="mb-4">
-                <Link href={`/admin/products`}>Back</Link>
+                <Link href={`/admin/products`}>Retour</Link>
               </div>
             </form>
           )}

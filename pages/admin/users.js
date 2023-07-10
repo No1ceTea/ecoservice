@@ -121,7 +121,7 @@ function AdminUsersScreen() {
                           type="button"
                           className="default-button"
                         >
-                          Edit
+                          Modifier
                         </Link>
                         &nbsp;
                         <button

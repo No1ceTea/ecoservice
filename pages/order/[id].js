@@ -141,7 +141,7 @@ function OrderScreen() {
           details
         )
         dispatch({ type: 'PAY_SUCCESS', payload: data })
-        toast.success('Order is paid successgully')
+        toast.success('La commande a bien été payer')
       } catch (err) {
         dispatch({ type: 'PAY_FAIL', payload: getError(err) })
         toast.error(getError(err))
@@ -160,7 +160,7 @@ function OrderScreen() {
         {}
       )
       dispatch({ type: 'DELIVER_SUCCESS', payload: data })
-      toast.success('Order is delivered')
+      toast.success('Commande livrer')
     } catch (err) {
       dispatch({ type: 'DELIVER_FAIL', payload: getError(err) })
       toast.error(getError(err))
@@ -171,45 +171,45 @@ function OrderScreen() {
     <Layout title={`Order ${orderId}`}>
       <h1 className="mb-4 text-xl">{`Order ${orderId}`}</h1>
       {loading ? (
-        <div>Loading...</div>
+        <div>Chargement...</div>
       ) : error ? (
         <div className="alert-error">{error}</div>
       ) : (
         <div className="grid md:grid-cols-4 md:gap-5">
           <div className="overflow-x-auto md:col-span-3">
             <div className="card  p-5">
-              <h2 className="mb-2 text-lg">Shipping Address</h2>
+              <h2 className="mb-2 text-lg">Adresse de livraison</h2>
               <div>
                 {shippingAddress.fullName}, {shippingAddress.address},{' '}
                 {shippingAddress.city}, {shippingAddress.postalCode},{' '}
                 {shippingAddress.country}
               </div>
               {isDelivered ? (
-                <div className="alert-success">Delivered at {deliveredAt}</div>
+                <div className="alert-success">Délivrer le {deliveredAt}</div>
               ) : (
-                <div className="alert-error">Not delivered</div>
+                <div className="alert-error">Pas encore livrer</div>
               )}
             </div>
 
             <div className="card p-5">
-              <h2 className="mb-2 text-lg">Payment Method</h2>
+              <h2 className="mb-2 text-lg">Méthode de paiement</h2>
               <div>{paymentMethod}</div>
               {isPaid ? (
-                <div className="alert-success">Paid at {paidAt}</div>
+                <div className="alert-success">Payer le {paidAt}</div>
               ) : (
-                <div className="alert-error">Not paid</div>
+                <div className="alert-error">Pas encore payé</div>
               )}
             </div>
 
             <div className="card overflow-x-auto p-5">
-              <h2 className="mb-2 text-lg">Order Items</h2>
+              <h2 className="mb-2 text-lg">Liste de la commande</h2>
               <table className="min-w-full">
                 <thead className="border-b">
                   <tr>
                     <th className="px-5 text-left">Item</th>
-                    <th className="    p-5 text-right">Quantity</th>
-                    <th className="  p-5 text-right">Price</th>
-                    <th className="p-5 text-right">Subtotal</th>
+                    <th className="    p-5 text-right">Quantité</th>
+                    <th className="  p-5 text-right">Prix</th>
+                    <th className="p-5 text-right">Total</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -232,7 +232,7 @@ function OrderScreen() {
                       <td className=" p-5 text-right">{item.quantity}</td>
                       <td className="p-5 text-right">${item.price}</td>
                       <td className="p-5 text-right">
-                        ${item.quantity * item.price}
+                        {item.quantity * item.price}€
                       </td>
                     </tr>
                   ))}
@@ -242,7 +242,7 @@ function OrderScreen() {
           </div>
           <div>
             <div className="card  p-5">
-              <h2 className="mb-2 text-lg">Order Summary</h2>
+              <h2 className="mb-2 text-lg">Récapitulatif de la commande</h2>
               <ul>
                 <li>
                   <div className="mb-2 flex justify-between">
@@ -252,13 +252,13 @@ function OrderScreen() {
                 </li>{' '}
                 <li>
                   <div className="mb-2 flex justify-between">
-                    <div>Tax</div>
+                    <div>Taxe</div>
                     <div>${taxPrice}</div>
                   </div>
                 </li>
                 <li>
                   <div className="mb-2 flex justify-between">
-                    <div>Shipping</div>
+                    <div>Frais de livraison</div>
                     <div>${shippingPrice}</div>
                   </div>
                 </li>
@@ -271,7 +271,7 @@ function OrderScreen() {
                 {!isPaid && (
                   <li>
                     {isPending ? (
-                      <div>Loading...</div>
+                      <div>Chargement...</div>
                     ) : (
                       <div className="w-full">
                         <PayPalButtons
@@ -281,12 +281,12 @@ function OrderScreen() {
                         ></PayPalButtons>
                       </div>
                     )}
-                    {loadingPay && <div>Loading...</div>}
+                    {loadingPay && <div>Chargement...</div>}
                   </li>
                 )}
                 {session.user.isAdmin && order.isPaid && !order.isDelivered && (
                   <li>
-                    {loadingDeliver && <div>Loading...</div>}
+                    {loadingDeliver && <div>Chargement...</div>}
                     <button
                       className="primary-button w-full"
                       onClick={deliverOrderHandler}

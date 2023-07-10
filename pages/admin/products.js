@@ -156,7 +156,7 @@ export default function AdminProdcutsScreen() {
                           type="button"
                           className="default-button"
                         >
-                          Edit
+                          Modifier
                         </Link>
                         &nbsp;
                         <button
