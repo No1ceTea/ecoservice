@@ -100,7 +100,7 @@ export default function Layout({ title, children }) {
                         Historique des commandes
                       </DropdownLink>
                     </Menu.Item>
-                    {session.user.isAdmin && (
+                    {session.user.isAdmin & & (
                       <Menu.Item>
                         <DropdownLink
                           className="dropdown-link"

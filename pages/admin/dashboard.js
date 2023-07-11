@@ -70,7 +70,7 @@ function AdminDashboardScreen() {
     labels: summary.salesData.map((x) => x._id), // 2022/01 2022/03
     datasets: [
       {
-        label: 'Sales',
+        label: 'Ventes',
         backgroundColor: 'rgba(162, 222, 208, 1)',
         data: summary.salesData.map((x) => x.totalSales),
       },
