@@ -247,25 +247,25 @@ function OrderScreen() {
                 <li>
                   <div className="mb-2 flex justify-between">
                     <div>Items</div>
-                    <div>${itemsPrice}</div>
+                    <div>{itemsPrice}€</div>
                   </div>
                 </li>{' '}
                 <li>
                   <div className="mb-2 flex justify-between">
                     <div>Taxe</div>
-                    <div>${taxPrice}</div>
+                    <div>{taxPrice}€</div>
                   </div>
                 </li>
                 <li>
                   <div className="mb-2 flex justify-between">
                     <div>Frais de livraison</div>
-                    <div>${shippingPrice}</div>
+                    <div>{shippingPrice}€</div>
                   </div>
                 </li>
                 <li>
                   <div className="mb-2 flex justify-between">
                     <div>Total</div>
-                    <div>${totalPrice}</div>
+                    <div>{totalPrice}€</div>
                   </div>
                 </li>
                 {!isPaid && (
@@ -291,7 +291,7 @@ function OrderScreen() {
                       className="primary-button w-full"
                       onClick={deliverOrderHandler}
                     >
-                      Deliver Order
+                      Livrer la commande
                     </button>
                   </li>
                 )}
