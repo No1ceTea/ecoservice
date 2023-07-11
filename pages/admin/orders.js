@@ -1,8 +1,8 @@
-import axios from 'axios'
-import Link from 'next/link'
-import React, { useEffect, useReducer } from 'react'
-import Layout from '../../components/Layout'
-import { getError } from '../../utils/error'
+import axios from 'axios';
+import Link from 'next/link';
+import React, { useEffect, useReducer } from 'react';
+import Layout from '../../components/Layout';
+import { getError } from '../../utils/error';
 
 function reducer(state, action) {
   switch (action.type) {
@@ -82,22 +82,22 @@ export default function AdminOrderScreen() {
                 <tbody>
                   {orders.map((order) => (
                     <tr key={order._id} className="border-b">
-                      <td className="p-5">{order._id}</td>
+                      <td className="p-5">{order._id.substring(20, 24)}</td>
                       <td className="p-5">
                         {order.user ? order.user.name : 'DELETED USER'}
                       </td>
                       <td className="p-5">
-                        {order.createdAt}
+                        {order.createdAt.substring(0, 10)}
                       </td>
                       <td className="p-5">${order.totalPrice}</td>
                       <td className="p-5">
                         {order.isPaid
-                          ? `${order.paidAt}`
+                          ? `${order.paidAt.substring(0, 10)}`
                           : 'not paid'}
                       </td>
                       <td className="p-5">
                         {order.isDelivered
-                          ? `${order.deliveredAt  }`
+                          ? `${order.deliveredAt.substring(0, 10)}`
                           : 'not delivered'}
                       </td>
                       <td className="p-5">
